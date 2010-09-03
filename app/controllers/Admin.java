@@ -26,14 +26,11 @@ public class Admin extends Controller {
         int nbImage = Image.all(Image.class).count();
         render(posts, nbImage);
     }
-    
-    public static void cachereset(){
-    	flash.success("Le cache a été effacé");
-    	Cache.clear();
-    public static void add() {
-        render("@form");
-    }
-    	index();
+
+    public static void cachereset() {
+        flash.success("Le cache a été effacé");
+        Cache.clear();
+        index();
     }
 
     public static void add() {
@@ -56,11 +53,11 @@ public class Admin extends Controller {
     public static void delete(long id) {
         Post post = Post.findById(id);
 
-        List<Image> imagesToDelete= Image.allByPostId(post.id);
-        for(Image imageToDelete : imagesToDelete){
-        	imageToDelete.delete();
+        List<Image> imagesToDelete = Image.allByPostId(post.id);
+        for (Image imageToDelete : imagesToDelete) {
+            imageToDelete.delete();
         }
-        
+
         post.delete();
         flash.success("L'article " + id + " a bien ete supprime");
         index();
