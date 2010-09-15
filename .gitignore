@@ -15,3 +15,4 @@ bin/
 war/
 true
 precompiled/
+test-result/
