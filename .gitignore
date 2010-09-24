@@ -16,3 +16,5 @@ war/
 true
 precompiled/
 test-result/
+*.orig
+

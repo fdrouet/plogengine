@@ -2,6 +2,8 @@ package models;
 
 import java.util.Date;
 
+import com.google.appengine.api.users.UserServiceFactory;
+
 import siena.DateTime;
 import siena.Generator;
 import siena.Id;
@@ -28,6 +30,9 @@ public class Post extends Model {
 
     public String  content;
     
+    public Long hits=0L;
+    
+    
     
     public Post(){
     	
@@ -47,7 +52,8 @@ public class Post extends Model {
     }
 
     public static Post findById(Long id) {
-        return Model.all(Post.class).filter("id", id).get();
+    	Post post = Model.all(Post.class).filter("id", id).get();
+        return post;
     }
 
     public static Query<Post> all() {
@@ -57,9 +63,22 @@ public class Post extends Model {
     public static Query<Post> allPublished() {
         return Model.all(Post.class).order("-postedAt").filter("published", true);
     }
+    
 
     public static Post findByURL(String url) {
-        return Model.all(Post.class).filter("url", url).get();
+    	Post post= Model.all(Post.class).filter("url", url).get();
+    	//On incremente les hits uniquement si ce n'est pas un utilisateur qui affiche la page
+    	if (!UserServiceFactory.getUserService().isUserLoggedIn()){
+	    		System.out.println(post.hits);
+	    		if (post.hits==null){
+	    			post.hits=0L;
+	    		}
+	    		post.hits=post.hits+1;
+	    		post.update();
+    	}
+        return post;
     }
+    
+   
 
 }
