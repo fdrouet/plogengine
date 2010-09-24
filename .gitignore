@@ -12,7 +12,7 @@ bin/
 *.swp
 .classpath
 .project
-war/
+#war/
 true
 precompiled/
 test-result/
