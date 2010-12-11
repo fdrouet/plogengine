@@ -2,7 +2,7 @@
 	<h2 class="post-title">#{a @Application.showByDateAndUrl(_value.postedAt.format('yyyy'), _value.postedAt.format('MM'), _value.postedAt.format('dd'), _value.url)}${_value.title}#{/a}</h2>
 	<div class="post-metadata">
 		<p class="post-author">
-			<small>Damien GOUYETTE | ${_value.postedAt?.format('dd MMM yyyy')} |  ${_value.hits} HITS
+			<small>Frederic DROUET | ${_value.postedAt?.format('dd MMM yyyy')} |  ${_value.hits} HITS
 			#{ifAdmin}
 				 - #{a @Admin.form(_value.id)}Editer#{/a}
 			#{/ifAdmin}
@@ -14,17 +14,19 @@
 	</div>
 </article>
 
-
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-  /**
-    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
-    */
-	//disqus_developer = 0;  
-  (function() {
-   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-   dsq.src = 'http://damiengouyettesblog.disqus.com/embed.js';
-   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'tarpoonsblog';
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = '${_value.url}';
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+    var disqus_developer = 1;
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=damiengouyettesblog">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
