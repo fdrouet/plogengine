@@ -1,0 +1,41 @@
+# Application dependencies
+
+require:
+    - play 1.2
+#    - play -> gae 1.4
+    - play -> siena 1.5
+    - jdom -> jdom 1.0:
+        transitive: false
+    - rome -> rome 1.0:
+        transitive: false
+    - org.xwiki.commons -> xwiki-commons-component-api 3.0
+    - org.xwiki.commons -> xwiki-commons-observation-api 3.0
+    - org.xwiki.commons -> xwiki-commons-component-observation 3.0
+    - org.xwiki.rendering -> xwiki-rendering-syntax-wikimodel 3.0:
+        exclude:
+            - org.jdom
+            - net.java.dev.javacc
+    - org.xwiki.commons -> xwiki-commons-component-default 3.0:
+        exclude:
+            - org.jdom
+            - xerces
+            - xalan -> xalan
+    - org.xwiki.rendering -> xwiki-rendering-transformation-macro 3.0
+    - org.xwiki.rendering -> xwiki-rendering-macro-toc 3.0
+    - org.xwiki.rendering -> xwiki-rendering-macro-html 3.0
+    
+repositories:
+    - xwiki:
+        type: iBiblio
+        root: "http://maven.xwiki.org/releases/"
+        contains:
+            - org.xwiki.commons -> *
+            - org.xwiki.rendering -> *
+    - xwiki_externals:
+        type: iBiblio
+        root: http://maven.xwiki.org/externals/
+        contains:
+            - rome -> *
+            - net.sourceforge.htmlcleaner -> *
+            - org.wikimodel -> *
+

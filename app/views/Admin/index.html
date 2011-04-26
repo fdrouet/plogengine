@@ -1,23 +1,22 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Administration' /}
 
 #{if flash.success}
-    	<div class="success">
-    		${flash.success}
-    	</div>
-    #{/if}
-    #{if flash.error || error}
-    	<div class="error">
-    		${error ?: flash.error}
-    	</div>
-    #{/if}
-
-
+	<div class="success">
+		${flash.success}
+	</div>
+#{/if}
+#{if flash.error || error}
+	<div class="error">
+		${error ?: flash.error}
+	</div>
+#{/if}
+#{a @Admin.cacheReset()}+Vider le cache (globalement)#{/a}<br />
+#{a @Admin.cacheReset_Feed()}+Vider le cache RSS#{/a}<br />
 
 <table id="articles" width="100%" border="1px">
 <thead>
 <tr>
-	
 	<th>id</th>
 	<th>titre</th>
 	<th>hits</th>
@@ -36,13 +35,7 @@
 <p>
 <b>Tags</b> : ${tags}
 </p>	
-	<p>Nombre d'image en base : ${nbImage}</p>
-#{if flash.success}
-    <p class="success">
-        ${flash.success}
-    </p>
-#{/if}
-
+<p>Nombre d'image en base : ${nbImage}</p>
 
 
 <fieldset>

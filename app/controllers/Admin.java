@@ -29,9 +29,21 @@ public class Admin extends Controller {
         render(posts, nbImage, tags);
     }
 
-    public static void cachereset() {
-        flash.success("Le cache a été effacé");
+    public static void cacheReset() {
         Cache.clear();
+        // TODO i18n
+        flash.success("Le cache a été effacé");
+        index();
+    }
+
+    public static void cacheReset_Feed() {
+        if (Cache.safeDelete(Feeds.FEEDS)) {
+            // TODO i18n
+            flash.success("Le cache RSS a été effacé");
+        } else {
+            // TODO i18n
+            flash.error("Problem lors de l'effacement du cache RSS");
+        }
         index();
     }
 
@@ -47,8 +59,8 @@ public class Admin extends Controller {
         if (id != null) {
             List<Image> images = Image.allByPostId(id);
             Post post = Post.findById(id);
-           List<Tag> tags =  Tag.findTagsByPostId(id);
-           Tag.findAll();
+            List<Tag> tags = Tag.findTagsByPostId(id);
+            Tag.findAll();
             render(post, images, tags);
         }
         render();
@@ -78,25 +90,26 @@ public class Admin extends Controller {
         Image.findById(id).delete();
         index();
     }
-    
-    public static void saveTag(@NotNull @NotEmpty String tagName, @NotNull @NotEmpty long postId){
-    	Logger.info("Ajout du tag %s a l'article id %s", tagName, postId);
-    	Tag tag = Tag.findOrCreateByName(tagName);
-    	Logger.info(" avant tag.id %s, tag.name %s, tag.postIds %s", tag.id, tag.name, tag.postIds);
-    	tag.postIds.add(postId);
-    	if(tag.id==null){
-    		tag.insert();
-    	}
-    	else{
-    		tag.update();
-    	}
-    	Logger.info("apres  tag.id %s, tag.name %s, tag.postIds %s", tag.id, tag.name, tag.postIds);
-    	form(postId);
+
+    public static void saveTag(@NotNull @NotEmpty String tagName, @NotNull @NotEmpty long postId) {
+        Logger.info("Ajout du tag %s a l'article id %s", tagName, postId);
+        Tag tag = Tag.findOrCreateByName(tagName);
+        Logger.info(" avant tag.id %s, tag.name %s, tag.postIds %s", tag.id, tag.name, tag.postIds);
+        tag.postIds.add(postId);
+        if (tag.id == null) {
+            tag.insert();
+        } else {
+            tag.update();
+        }
+        Logger.info("apres  tag.id %s, tag.name %s, tag.postIds %s", tag.id, tag.name, tag.postIds);
+        form(postId);
     }
 
     @SuppressWarnings("deprecation")
-    public static void save(Long id, @NotNull @NotEmpty String title, String chapeau, String url, String content, String postedAt, boolean published) {
-        Logger.info("Save id = %s, title = %s, content = %s, postedAt = %s, published = %s", id, title, content, postedAt, published);
+    public static void save(Long id, @NotNull @NotEmpty String title, String chapeau, String url, String content,
+            String postedAt, boolean published) {
+        Logger.info("Save id = %s, title = %s, content = %s, postedAt = %s, published = %s", id, title, content, postedAt,
+                published);
         if (id == null) {
             Post post = new Post(title, chapeau, url, content, published);
             post.insert();

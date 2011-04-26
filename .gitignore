@@ -1,18 +1,37 @@
-*.iml
-*.ipr
-*.iws
-*.orig
+# ignore standard temp files
 *.swp
-.classpath
+
+# ignore Mac OS internal files
+*.DS_Store
+
+# ignore eclipse files
 .project
+.classpath
 .settings/
 bin/
+
+# ignore Standard Playframework files
 eclipse/
-logs
+lib/
+logs/
 precompiled/
-results/
-server.pid
-target/
 test-result/
 tmp/
 true
+
+# ignore Maven files
+*target/
+
+# ignore IntelliJ IDE files
+*.iml
+*.ipr
+*.iws
+
+# Project Ignore files
+modules/siena*
+
+
+#### ????
+*.orig
+results/
+server.pid

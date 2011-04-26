@@ -3,33 +3,32 @@
     <head>
         <title>#{get 'title' /}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		
-		#{stylesheet id:'main', media:'screen', src:'main.css' /}
-		
-		#{stylesheet id:'jquery-ui', media:'screen', src:'jquery-ui/1.8.1/base/jquery.ui.all.css' /}
 
-	  	
-        
-	  	
-	  	#{shjs.style name:'ide-eclipse' /}
-        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.feedburner.com/CestpasdurcomTutoriauxEtRessourcesDuWeb" />
+	  	%{feedUrl = play.configuration.getProperty('plog.feed.url')}%
+	  	#{if feedUrl}
+        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="${feedUrl}" />
+	  	#{/if}
+	  	#{else}
+        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="@@{Feeds.index()}" />
+	  	#{/else}
 
-        #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+		
+		#{ui.jquery-ui.css /}
+	  	#{shjs.style name:'ide-eclipse' /}
+		#{stylesheet id:'main', media:'screen,projection', src:'main.css' /}
+		<link rel="stylesheet" type="text/css" href="/public/markitup/sets/textile/style.css" media="screen,projection" id="markitup_sets_textile" />
+		#{stylesheet id:'markitup_textile', media:'screen,projection', src:'main.css' /}
+		<link rel="stylesheet" type="text/css" href="/public/markitup/skins/markitup/style.css" media="screen,projection" id="markitup_skin_markitup" />
+        #{get 'moreStyles' /}
+
         <!--[if IE]>#{script id:'html5-ie', src:'ie/html5-ie.js'/}<![endif]--> 
-        #{script id:'jquery', src:'jquery/1.4.2/jquery.min.js' /}
-        #{script id:'jquery-ui', src:'jquery-ui/1.8.1/jquery-ui.custom.min.js' /}
+		#{ui.jquery.js /}
+		#{ui.jquery-ui.js /}
 
+		<script type="text/javascript" src="/public/markitup/jquery.markitup.js" id="markitup_jquery"></script>
+		<script type="text/javascript" src="/public/markitup/sets/textile/set.js" id="markitup_textile"></script>
 		
-        
-
-		<script type="text/javascript"  src="/public/markitup/jquery.markitup.js"></script>
-	
-		<script type="text/javascript"  src="/public/markitup/sets/textile/set.js"></script>
-		
-		<link rel="stylesheet" type="text/css" href="/public/markitup/sets/textile/style.css" />
-		
-		<link rel="stylesheet" type="text/css" href="/public/markitup/skins/markitup/style.css" />
 		
 		
 	
@@ -85,6 +84,5 @@
         })();
         //]]>
         </script>
-        
     </body>
 </html>
