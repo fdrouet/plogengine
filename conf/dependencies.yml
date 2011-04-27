@@ -2,8 +2,10 @@
 
 require:
     - play 1.2
+    # put the gae module in application.conf in order to be able to upload on GAE
 #    - play -> gae 1.4
     - play -> siena 1.5
+    - play -> pdf 0.2
     - jdom -> jdom 1.0:
         transitive: false
     - rome -> rome 1.0:

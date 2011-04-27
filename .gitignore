@@ -29,6 +29,7 @@ true
 
 # Project Ignore files
 modules/siena*
+modules/pdf*
 
 
 #### ????
