@@ -19,6 +19,9 @@ test-result/
 tmp/
 true
 
+# ignore Play GAE files
+war/WEB-INF/appengine-generated/datastore-indexes-auto.xml
+
 # ignore Maven files
 *target/
 
