@@ -2,6 +2,7 @@
 
 require:
     - play 1.2
+    - org.tarpoon -> plui 0.3.0
     # put the gae module in application.conf in order to be able to upload on GAE
 #    - play -> gae 1.4
     - play -> siena 1.5
@@ -40,4 +41,14 @@ repositories:
             - rome -> *
             - net.sourceforge.htmlcleaner -> *
             - org.wikimodel -> *
+    - pluiLocal:
+        type:       local
+        artifact:   "/Users/fdrouet/Dev/github.com/fdrouet/plui"
+        contains:
+            - org.tarpoon -> plui HEAD
+    - fdrouet:
+        type:       http
+        artifact:   "http://dl.dropbox.com/u/1769530/play/modules/[module]/[module]-[revision].zip"
+        contains:
+            - org.tarpoon -> *
 

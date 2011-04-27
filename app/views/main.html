@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
     <head>
-        <title>#{get 'title' /}</title>
+        <title>#{get 'title' /} - ${play.configuration['plog.site.title']}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	#{if play.configuration['plog.site.description']}<meta name="description" content="${play.configuration['plog.site.description']}" />#{/if}
+	#{if play.configuration['plog.site.keywords']}<meta name="keywords" content="${play.configuration['plog.site.keywords']}" />#{/if}
 
-	  	%{feedUrl = play.configuration.getProperty('plog.feed.url')}%
-	  	#{if feedUrl}
-        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="${feedUrl}" />
+	  	#{if play.configuration['plog.feed.url']}
+        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="${play.configuration['plog.feed.url']}" />
 	  	#{/if}
 	  	#{else}
         <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="@@{Feeds.index()}" />
@@ -15,7 +16,8 @@
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
 		
 		#{ui.jquery-ui.css /}
-	  	#{shjs.style name:'ide-eclipse' /}
+		#{ui.shjs.css /}
+	  	*{shjs.style name:'ide-eclipse'}*
 		#{stylesheet id:'main', media:'screen,projection', src:'main.css' /}
 		<link rel="stylesheet" type="text/css" href="/public/markitup/sets/textile/style.css" media="screen,projection" id="markitup_sets_textile" />
 		#{stylesheet id:'markitup_textile', media:'screen,projection', src:'main.css' /}
@@ -25,13 +27,11 @@
         <!--[if IE]>#{script id:'html5-ie', src:'ie/html5-ie.js'/}<![endif]--> 
 		#{ui.jquery.js /}
 		#{ui.jquery-ui.js /}
+		#{ui.shjs.js /}
 
 		<script type="text/javascript" src="/public/markitup/jquery.markitup.js" id="markitup_jquery"></script>
 		<script type="text/javascript" src="/public/markitup/sets/textile/set.js" id="markitup_textile"></script>
-		
-		
-		
-	
+
         #{get 'moreScripts' /}
     </head>
     <body>
@@ -69,6 +69,7 @@
         env=${play.configuration['com.google.appengine.runtime.environment']} - version=${play.configuration['com.google.appengine.runtime.version']}
         </footer>
         </div>
+        
 #{google-analytics.js /}
     </body>
 </html>

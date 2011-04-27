@@ -31,8 +31,9 @@ war/WEB-INF/appengine-generated/datastore-indexes-auto.xml
 *.iws
 
 # Project Ignore files
-modules/siena*
 modules/pdf*
+modules/plui*
+modules/siena*
 
 
 #### ????

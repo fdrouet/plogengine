@@ -1,6 +1,6 @@
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
 	<application>plog-engine</application>
-	<version>12</version>
+	<version>13</version>
 	
 	<!-- Enable the GAE Warmup Request -->
 	<!-- (http://code.google.com/intl/fr-FR/appengine/docs/java/config/appconfig.html#Warmup_Requests) -->
