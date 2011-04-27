@@ -66,23 +66,9 @@
 
         <footer>
             <a href="http://www.playframework.org/" target="_blank"><img id="powered" src="/public/images/badge-dark.png"></a>
+        env=${play.configuration['com.google.appengine.runtime.environment']} - version=${play.configuration['com.google.appengine.runtime.version']}
         </footer>
         </div>
         #{marqueurStat/}
-
-        <script type="text/javascript">
-        //<![CDATA[
-        (function() {
-            var links = document.getElementsByTagName('a');
-            var query = '?';
-            for(var i = 0; i < links.length; i++) {
-            if(links[i].href.indexOf('#disqus_thread') >= 0) {
-                query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-            }
-            }
-            document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/tarpoonsblog/get_num_replies.js' + query + '"></' + 'script>');
-        })();
-        //]]>
-        </script>
     </body>
 </html>
