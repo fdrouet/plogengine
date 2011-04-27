@@ -5,8 +5,6 @@
 # Home page
 GET     /                                                               Application.index
 
-
-
 ### Administration
 GET     /admin/?                                                        Admin.index
 GET     /admin/add                                                      Admin.add
@@ -16,6 +14,9 @@ GET     /admin/delete/{id}                                              Admin.de
 GET     /admin/cache/reset                                              Admin.cacheReset
 GET     /admin/cache/reset/feed                                         Admin.cacheReset_Feed
   
+### Backup
+GET     /backup/{id}        											Backup.backup
+POST    /backup/restore/{format}		     							Backup.restore
 
 ### Affichage d'un Post
 # /!\ les urls json doivent figurer avant leurs urls normales pour etre prises en compte 
@@ -27,8 +28,11 @@ GET     /post/{<[1-9][0-9]*>id}                                         Applicat
 GET		/feed/?															Feeds.index
 GET		/feed/refresh													Feeds.refresh
 
+### Google App Engine 
+GET		/_ah/warmup														Application.index
+
+### Static files
 GET     /public/                                						staticDir:public
 GET     /images/{name}     												Application.fileContent
-GET     /backup/{id}        											Backup.backup
-POST    /backup/restore/{format}		     							Backup.restore
+
 *       /{controller}/{action}                  						{controller}.{action}

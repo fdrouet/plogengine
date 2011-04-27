@@ -1,5 +1,15 @@
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
 	<application>plog-engine</application>
-	<version>11</version>
+	<version>12</version>
+	
+	<!-- Enable the GAE Warmup Request -->
+	<!-- (http://code.google.com/intl/fr-FR/appengine/docs/java/config/appconfig.html#Warmup_Requests) -->
+	<warmup-requests-enabled>true</warmup-requests-enabled>
+	
+	<!-- Add the Plog Admin page to the GAE console -->
+	<!-- (http://code.google.com/intl/fr-FR/appengine/docs/java/config/appconfig.html#Administration_Console_Custom_Pages) -->
+	<admin-console>
+		<page name="Plog Administration" url="/admin" />
+	</admin-console>
 </appengine-web-app>
 

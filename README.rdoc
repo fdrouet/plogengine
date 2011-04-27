@@ -1,10 +1,37 @@
-== Installation
-
 == prerequisite
 
-* Play Framework 1.0.x (tested with 1.0.3.2)
-* play-siena 1.2 module
-* play-gae 1.0.3 module
+* Play Framework 1.2
+* play-siena 1.5 module
+* play-gae 1.4 module
+
+== Installation
+
+* git clone git://github.com/fdrouet/plogengine.git
+* git submodule init
+* git submodule update
+
+Edit the file war/WEB-INF/appengine-web.xml to define :
+* your google appengine id (replace "plog-engine" with your own id)
+* your app version
+
+== Configuration
+
+All configuration parameters are in the file conf/application.conf
+
+### Site configuration
+plog.site.title=My Blog Title
+plog.site.description=My Blog description
+plog.site.author.name=
+## Configure a Google Analytics tracker (if empty, no tracker in the page)
+plog.site.googleanalytics.account=
+### Feed configuration
+## Configure an external feed url for the RSS Feed (ex: feedburner url) (default: http://hostname/feed)
+plog.feed.url=
+## Which kind off feed format to use ? (default: rss_2.0)
+## choose one of : rss_0.90, rss_0.91, rss_0.92, rss_0.93, rss_0.94, rss_1.0 rss_2.0 or atom_0.3
+plog.feed.format=rss_2.0
+## Cache of the RSS Feed expiration frequency (ex: 10s, 3mn, 8h)  (default: 12h)
+plog.feed.cache.expiration=12h
 
 == howto deploy 
 
@@ -14,22 +41,4 @@ or
  
 * play gae:deploy --gae <Path to your GAE SDK Dir>/
 
-== Problèmes avec les librairies wiki embarquées.
 
-Play! embarque avec lui, même si celles ci ne sont pas utilisées (à première vue), les librairies suivantes : 
-* WikiText
-* wikitext.core_1.1.1.jar
-
-Ces versions sont obsolètes, pour réaliser la conversion textile en html, il va falloirs supprimer les deux librairies présentes dans le répertoire $PLAY_HOME/framework/lib/
-
-Les versions plus récentes sont embarquées avec l'application : 
-* org.eclipse.mylyn.wikitext.confluence.core_1.4.0.I20100829-0800-e3x.jar : permet d'avoir la syntaxe textile + syntaxe confluence
-* org.eclipse.mylyn.wikitext.core_1.4.0.I20100829-0800-e3x.jar  : le core
-* org.eclipse.mylyn.wikitext.textile.core_1.4.0.I20100829-0800-e3x.jar : la syntaxe textile pure et simple.
-
-== Récupérer les sous modules git
-
-Afin de récupérer les sous modules git, lancez les commandes suivantes : 
-
-* git submodule init
-* git submodule update
